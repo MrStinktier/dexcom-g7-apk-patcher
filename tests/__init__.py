@@ -1,1 +1,1 @@
-"""Tests for Dexcom APK-Patcher toolchain."""
+"""Tests for dexcom APK-patcher tools."""

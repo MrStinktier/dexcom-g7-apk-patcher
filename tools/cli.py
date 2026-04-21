@@ -10,13 +10,14 @@ COMMANDS = {
     "patch-staging": ("Dry-run patch stack against an APK", "patch_staging"),
     "broadcast-wizard": ("Interactive broadcast injection wizard", "broadcast_wizard"),
     "patch-audit": ("Audit and diff patch directories", "patch_audit"),
+    "version-detect": ("Detect APK version without full decompilation", "version_detect"),
 }
 
 
 def main():
     if len(sys.argv) < 2 or sys.argv[1] == "--help":
         print("Dexcom APK-Patcher Toolchain")
-        print("Usage: python3 -m tools <command> [args]")
+        print("Usage: python -m tools <command> [args]")
         print()
         for cmd, (desc, _) in COMMANDS.items():
             print(f"  {cmd:<22} {desc}")
@@ -25,6 +26,9 @@ def main():
     cmd = sys.argv[1]
     if cmd not in COMMANDS:
         print(f"Unknown command: {cmd}", file=sys.stderr)
+        print("Available commands:", file=sys.stderr)
+        for c, (desc, _) in COMMANDS.items():
+            print(f"  {c:<22} {desc}", file=sys.stderr)
         sys.exit(1)
 
     _, module_name = COMMANDS[cmd]
