@@ -15,6 +15,22 @@ KEYSTORE = Path("signing.keystore")
 KEYSTORE_PASS = "6dYlrOon6U1430fwj492dBjnYm8CN5zYcWdbVJ53GQIf7PExEV"
 
 
+def apktool_available() -> bool:
+    """Check if apktool JAR is available."""
+    return APKTOOL_JAR.exists()
+
+
+def apk_available() -> bool:
+    """Check if aapt or aapt2 is in PATH."""
+    for name in ("aapt2", "aapt"):
+        try:
+            subprocess.run([name, "version"], capture_output=True, timeout=5, check=True)
+            return True
+        except (FileNotFoundError, subprocess.CalledProcessError):
+            continue
+    return False
+
+
 def detect_apk_version(apk_path: str) -> dict[str, Any]:
     """Read versionCode/versionName from an APK without full decompilation."""
     result = subprocess.run(
