@@ -10,7 +10,6 @@ COMMANDS = {
     "patch-staging": ("Dry-run patch stack against an APK", "patch_staging"),
     "broadcast-wizard": ("Interactive broadcast injection wizard", "broadcast_wizard"),
     "patch-audit": ("Audit and diff patch directories", "patch_audit"),
-    "version-detect": ("Detect APK version without full decompilation", "version_detect"),
 }
 
 
